@@ -1,0 +1,34 @@
+---
+#
+# Ingresses for the services with web frontends
+#
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: metrics
+  namespace: monitoring
+spec:
+  rules:
+  - host: grafana.minikube
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: 3000
+        path: /
+  - host: prometheus.minikube
+    http:
+      paths:
+        - backend:
+            serviceName: prometheus-k8s
+            servicePort: 9090
+          path: /
+
+  - host: alert-manager.minikube
+    http:
+      paths:
+        - backend:
+            serviceName: alertmanager-main
+            servicePort: 9093
+          path: /
+

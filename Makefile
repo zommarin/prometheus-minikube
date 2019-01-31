@@ -2,6 +2,8 @@
 #
 #
 
+KUBECONFIG = $(shell echo ~/.kube/minikube.yaml)
+export KUBECONFIG
 
 .PHONY: restart-minicube
 restart-minicube: kill-minikube
@@ -42,3 +44,4 @@ open-prometheus:
 
 open-alert-manager:
 	open http://alert-manager.minikube
+
